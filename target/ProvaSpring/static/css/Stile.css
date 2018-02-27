@@ -1,0 +1,163 @@
+.general{
+   margin-top: 3%;
+}
+.btn
+{
+    margin-bottom: 3%;
+    display: inline-block;
+}
+.h1{
+    margin-bottom: 10%;
+}
+
+input .form-control {
+    width: 50%;
+}
+
+.btn-group{
+    display: inline-block;
+}
+
+.fontSize{
+    font-size: 20px;
+    display: inline-block;
+}
+
+.glyphicon-triangle-top
+{
+    float: right;
+}
+
+.glyphicon-triangle-bottom
+{
+    float: right;
+}
+.allineamento
+{
+    float: left;
+    display: inline-block;
+}
+
+.cpPencil
+{
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+
+
+.cpRemove
+{
+    float: left;
+    margin-left: 6%;
+    color: red;
+}
+input[type=checkbox]
+{
+    float: left;
+}
+.dropdown-menu > li > a.cpRemove
+{
+    color: red;
+}
+
+.cpSearchDelete
+{
+    cursor: pointer;
+    pointer-events: visible;
+    color: black;
+}
+
+.colSelect
+{
+    background-color: #ECECEC;
+
+}
+.rowSelect td
+{
+    background-color: #FCF8E3;
+}
+
+.sizeSelect
+{
+    float: left;
+    width: 30%;
+
+
+}
+
+
+.footer
+{
+    width: 100%;
+    height: 60px;
+
+}
+
+.alignLeft{
+    float: left;
+    display: inline-block;
+}
+
+
+.cpFromControl
+{
+    padding: 0px ;
+}
+
+
+.alignRight{
+    width: 70%;
+    float: right;
+    display: inline-block;
+
+
+}
+
+.space
+{
+    margin-left: 2%;
+    margin-right: 2%;
+    float: right;
+    display: inline-block;
+}
+
+.divGroupImage{
+    float: right;
+    width: 40%;
+    position: absolute;
+    margin-left: 60%;
+}
+.divImage{
+    width: 40%;
+    position: absolute;
+    float: left;
+}
+form{
+    width: 80%;
+    float: left;
+    position: absolute;
+}
+
+.divFormSx
+{
+    /*position: absolute;*/
+    float: left;
+    width: 94%;
+}
+.divFormSxRep
+{
+    float: left;
+    width: 100%;
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}
+
+.buttonImage{
+    float: left;
+    margin-top: 77%;
+}

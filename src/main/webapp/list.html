@@ -1,0 +1,212 @@
+
+
+<p class="h1"> Users List </p>
+
+<!--Button for additional users-->
+<button type="button" class="btn btn-secondary glyphicon glyphicon-plus" ui-sref="addUser" >
+    <p class="fontSize">Add User</p>
+</button>
+
+<button type="button" class="btn btn-secondary glyphicon glyphicon-random" ng-click="randomUser()">
+    <p class="fontSize">Random User</p>
+</button>
+<br>
+
+<div class="table-responsive" >
+<table class="table table-striped table-bordered " >
+    <!--heading table-->
+    <tr>
+        <th class="col-sm-3">Actions</th>
+        <!--The first param is name fields in dbms-->
+        <!--FIRSTNAME-->
+       <th ng-click="orderBy('firstname',!orderAscDec)"  ng-class="(orderField == 'firstname')? selectCol :''">
+            Firstame
+            <span ng-show="orderField == 'firstname' && numClick < 3  ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+
+        <!--LASTNAME-->
+        <th ng-click="orderBy('lastname',!orderAscDec)" ng-class="(orderField == 'lastname')? selectCol :''">
+            Lastname
+            <span ng-show="orderField == 'lastname' && numClick < 3  ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+
+        <!--PHONE-->
+        <th ng-click="orderBy('phone',!orderAscDec)" ng-class="(orderField == 'phone')? selectCol :''">
+            Phone
+            <span ng-show="orderField== 'phone' && numClick < 3 ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+
+        <!--CITY-->
+        <th ng-click="orderBy('city',!orderAscDec)" ng-class="(orderField == 'city')? selectCol :''">
+            City
+            <span ng-show="orderField == 'city' && numClick < 3 ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+
+        <!--COUNTRY-->
+        <th ng-click="orderBy('country',!orderAscDec)" ng-class="(orderField == 'country')? selectCol :''">
+            Country
+            <span ng-show="orderField == 'country' && 0 < numClick < 3 ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+
+        <!--BIRTHDATE-->
+        <th ng-click="orderBy('birthdata',!orderAscDec)" ng-class="(orderField == 'birthdata')? selectCol :''">
+            BirthDay
+            <span ng-show="orderField == 'birthdata' && numClick < 3 ">
+                    <span ng-class="(orderAscDec)? up : down "></span>
+            </span>
+        </th>
+    </tr>
+
+
+    <tr>
+        <!--this group is fist row in the field "Action"-->
+        <td>
+            <input type="checkbox" class="checkbox" ng-model="checkOnOff"  ng-click="userCheck(null)" >
+            <button class="btn btn-default glyphicon glyphicon-remove cpRemove"  ng-click="deleteAll()" ng-show="checkOnOff || controlPage" >Delete</button>
+
+        </td>
+
+        <!--Input search string text in field-->
+        <td  ng-class="(orderField == 'firstname')? selectCol :''">
+
+            <!--Search firstname-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.firstname" ng-change="filterSearch()"/>
+               <a ng-show="searchUser.firstname" ng-click="cleanSearch()"> <i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'lastname')? selectCol :''">
+            <!--Search lastname-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.lastname" ng-change="filterSearch()"/>
+                <a ng-show="searchUser.lastname" ng-click="cleanSearch()"><i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'phone')? selectCol :''">
+            <!--Search phone-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.phone" ng-change="filterSearch()"/>
+                <a ng-show="searchUser.phone" ng-click="cleanSearch();filterSearch()"><i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'city')? selectCol :''">
+            <!--Search city-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.city" ng-change="filterSearch()"/>
+                <a role="button" ng-show="searchUser.city" ng-click="cleanSearch()"> <i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'country')? selectCol :''">
+            <!--Search country-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.country" ng-change="filterSearch()"/>
+                <a role="button" ng-show="searchUser.country" ng-click="cleanSearch()"> <i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'birthdata')? selectCol :''">
+            <!--Search birthdate-->
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchUser.birthDate" ng-change="filterSearch()"/>
+                <a ng-show="searchUser.birthDate" ng-click="cleanSearch()"> <i class="form-control-feedback glyphicon glyphicon-remove cpSearchDelete"></i></a>
+            </div>
+        </td>
+
+    </tr>
+
+    <!--Content table-->
+<tr ng-repeat="users in usersListOrder | limitTo: numUserForPage  : beginning" ng-class="(users.selectCheck)? selectRow: ''">
+        <td>
+            <!--Show checkbox for select-->
+            <input type="checkbox" class="select-checkbox" ng-model="users.selectCheck" ng-click="userCheck(users)" >
+
+
+            <!--Button for editing-->
+            <button class="btn btn-default glyphicon glyphicon-pencil cpPencil" ui-sref="editUser({id: [{{users.id}}]})" >Edit</button>
+
+            <!--Show menu View and Delete-->
+            <div class="btn-group">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                   More
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                        <a class=" glyphicon glyphicon-eye-open"  ui-sref="viewUser({id: {{users.id}}})" >View</a>
+                    </li>
+                    <li>
+                        <a class="glyphicon glyphicon-remove cpRemove" ng-click="deleteUser(users)" ui-sref="list" >Delete</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td  ng-class="(orderField == 'firstname')? selectCol :''">{{users.firstname}}</td>
+        <td  ng-class="(orderField == 'lastname')? selectCol :''">{{users.lastname}}</td>
+        <td  ng-class="(orderField == 'phone')? selectCol :''">{{users.phone}}</td>
+        <td  ng-class="(orderField == 'city')? selectCol :''">{{users.city}}</td>
+        <td  ng-class="(orderField == 'country')? selectCol :''">{{users.country}}</td>
+        <td  ng-class="(orderField == 'birthdata')? selectCol :''">{{users.birthdata | date:"dd/MM/yyyy"}}</td>
+
+    </tr>
+
+</table>
+
+</div><!--fine div table-->
+
+
+<!--row for pagination-->
+<div class="footer">
+
+    <!--div for view user for page-->
+    <div>
+        <div class="alignLeft">Show</div>
+        <div class="col-sm-1 alignLeft">
+            <select class="form-control cpFromControl"  ng-model="numUserForPage" ng-change="begin()" >
+                <option ng-repeat="selPage in selectPage" >{{selPage}}</option>
+            </select>
+        </div>
+        <div class="alignLeft"> entries </div>
+    </div>
+    <!--end div for view user for page-->
+
+
+
+    <!--div content button and command page-->
+    <div class="alignRight ">
+        <div class="space">
+            <i class="glyphicon glyphicon-fast-forward cpSearchDelete" ng-click="end()" ng-show="numPage<maxNumPage"></i>
+        </div>
+        <div class=" space">
+            <i class="glyphicon glyphicon-step-forward cpSearchDelete"  ng-click="next()" ng-show="numPage<maxNumPage"></i>
+        </div>
+        <div class="col-sm-2  space">
+           <input type="number" ng-model="numPage" min="1" max="{{maxNumPage}}" class="form-control cpFromControl" ng-change="userForPage()" required>
+        </div>
+        <div class=" space">
+            <i class="glyphicon glyphicon-step-backward cpSearchDelete" ng-click="back()" ng-show="numPage>1"></i>
+        </div>
+        <div class=" space">
+            <i class="glyphicon glyphicon-fast-backward cpSearchDelete" ng-click="begin()" ng-show="numPage>1"></i>
+        </div>
+        <!--div content information-->
+        <div class="space">
+            <div>Displaying {{currentUser}} to {{numCurrentUser}} of {{total}} items</div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div> <!--end div generale paginazione-->

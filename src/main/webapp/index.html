@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>List</title>
+
+        <!--<link href="/static/lib/bootstrap.min.css">-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/Stile.css">
+    </head>
+
+    <body ng-app="appUser">
+        <div class="container">
+           <div class="general" ng-controller="userController as usCrtl">
+
+               <div ui-view><!--View all user table--> </div>
+
+           </div><!-- close div general -->
+        </div><!--close div container-->
+
+        <!--Bootstrap and JQuery file include-->
+        <script src="/static/lib/jquery-3.2.0.min.js"></script>
+        <script src="/static/lib/bootstrap.min.js"></script>
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+        <!--AngularJs file include-->
+        <script src="/static/lib/angular.min.js"></script>
+        <script src="/static/lib/angular-resource.min.js"></script>
+        <script src="/static/lib/angular-ui-router.min.js"></script>
+        <!--AppUser AngularJs file include-->
+        <script src="/appUser.js"></script>
+        <script src="/static/js/controller/appUserController.js"></script>
+        <script src="/static/js/service/appUserService.js"></script>
+        <script src="/static/js/directive/appUserDirective.js"></script>
+    </body>
+</html>

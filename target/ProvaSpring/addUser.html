@@ -1,0 +1,99 @@
+<p class="h1" ng-show="!editPage"> add User </p>
+
+<p class="h1" ng-show="editPage"> Update User</p>
+
+
+<!--form for insert or update user-->
+
+<form name="formUser">
+    <div class="divFormSx">
+
+        <!--insert firstname-->
+        <div class="form-group row">
+            <label for="firstname" class="col-sm-2 col-form-label">Firstname:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="firstname" placeholder="firstname"
+                       ng-model="singleUser.firstname" ng-disabled="view" ng-required="true">
+            </div>
+        </div>
+
+        <!--insert lastname-->
+        <div class="form-group row">
+            <label for="lastname" class="col-sm-2 col-form-label">Lastname:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="lastname" placeholder="lastname"
+                       ng-model="singleUser.lastname" ng-disabled="view" required>
+            </div>
+        </div>
+
+        <!--insert phone-->
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="phone" placeholder="phone" ng-model="singleUser.phone"
+                       ng-disabled="view" required>
+            </div>
+        </div>
+
+        <!--insert city-->
+        <div class="form-group row">
+            <label for="city" class="col-sm-2 col-form-label">City:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="city" placeholder="city" ng-model="singleUser.city"
+                       ng-disabled="view" required>
+            </div>
+        </div>
+
+        <!--insert country-->
+        <div class="form-group row">
+            <label for="country" class="col-sm-2 col-form-label">Country:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="country" placeholder="country" ng-model="singleUser.country"
+                       ng-disabled="view" required>
+            </div>
+        </div>
+
+        <!--insert data-->
+        <div class="form-group row">
+            <label for="birthdate" class="col-sm-2 col-form-label">Birthdate:</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="birthdate" ng-model="singleUser.birthdata"
+                       ng-disabled="view" max="{{maxDate}}" required>
+            </div>
+        </div>
+        <!--message of help for compile field-->
+        <div class="form-group row">
+            <div class="col-sm-5 alert alert-info">
+                <a class="close" data-dismiss="alert"> × </a>
+                <Strong> Info: </Strong> All field must be completed
+            </div>
+        </div>
+    </div>
+
+
+    <!--Group form right for Upload and view Image-->
+    <div class="divGroupImage">
+        <div class="divImage">
+            <img ng-src="{{imageUser}}"/>
+        </div>
+        <div class="buttonImage">
+            <input class="btn btn-secondary" accept="image/jpeg" type="file" file-model="imageUser" ng-show="!view">
+        </div>
+    </div>
+
+
+    </div>
+    <div class="divFormSxRep">
+        <!--Button for additional users-->
+        <button type="submit" class="btn btn-success glyphicon glyphicon-ok"
+                ng-click="addUser(singleUser,false,formUser.$valid)" ng-show="!view">Save
+        </button>
+        <button type="submit" class=" btn btn-info" ng-click="addUser(singleUser,true,formUser.$valid)" ng-show="!view">
+            Save and back to list
+        </button>
+        <button type="button" class="btn btn-secondary glyphicon glyphicon-warning-sign" ui-sref="list" ng-show="!view">
+            Cancel
+        </button>
+        <button type="button" class=" btn btn-info " ui-sref="list" ng-show="view"> Back to list</button>
+    </div>
+</form><!--end form insert user-->
